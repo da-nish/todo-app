@@ -12,7 +12,7 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: 0,
       backgroundColor: AppColors.transparent,
-      leading: SizedBox(),
+      leading: const SizedBox(),
       centerTitle: true,
       actions: [
         Container(
@@ -23,7 +23,7 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
               Expanded(
                 child: Text(
                   title,

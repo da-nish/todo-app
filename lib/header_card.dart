@@ -5,7 +5,7 @@ class HomeHeaderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200,
       // width: double.infinity,
       // color: Colors.red,
@@ -56,16 +56,13 @@ class HomeHeaderCard extends StatelessWidget {
                     // mainAxisAlignment: MainAxisAlignment.end,
                     // crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Container(
-                        // color: Colors.amber,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Text("10"),
-                            SizedBox(width: 10),
-                            Text("15"),
-                          ],
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text("10"),
+                          SizedBox(width: 10),
+                          Text("15"),
+                        ],
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,

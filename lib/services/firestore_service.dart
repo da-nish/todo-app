@@ -31,12 +31,12 @@ class FirestoreService {
 //    for()
 //    batchSet.
 
-    print('$path: $datas');
+    // print('$path: $datas');
   }
 
   Future<void> deleteData({required String path}) async {
     final reference = FirebaseFirestore.instance.doc(path);
-    print('delete: $path');
+    // print('delete: $path');
     await reference.delete();
   }
 

@@ -19,22 +19,22 @@ class TodoItemCard extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             child: Row(
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 30,
                   backgroundColor: Colors.teal,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    child: Icon(Icons.abc),
                     // backgroundImage: AssetImage('assets/appdev.png'),
                     radius: 28,
+                    child: Icon(Icons.abc),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                    children: const [
                       Text("Title"),
                       SizedBox(height: 10),
                       Text("Title"),
@@ -43,7 +43,7 @@ class TodoItemCard extends StatelessWidget {
                 ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Text("9 oct"),
                     SizedBox(height: 4),
                     Icon(
@@ -55,7 +55,7 @@ class TodoItemCard extends StatelessWidget {
               ],
             ),
           ),
-          Divider()
+          const Divider()
         ],
       ),
     );

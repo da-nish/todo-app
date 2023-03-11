@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/header_card.dart';
 import 'package:todoapp/providers/auth_provider.dart';
-import 'package:todoapp/services/firestore_database.dart';
 import 'package:todoapp/social_button.dart';
 import 'package:todoapp/todo_item_card.dart';
 
@@ -32,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Row(
                 children: [
-                  SizedBox(width: 24),
+                  const SizedBox(width: 24),
                   Image.asset(
                     "images/goggle_icon.png",
                     height: 22,

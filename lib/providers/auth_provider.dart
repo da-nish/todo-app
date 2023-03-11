@@ -36,7 +36,7 @@ class AuthProvider extends ChangeNotifier {
       _user = googleuser;
 
       final googleAuth = await googleuser.authentication;
-      print(":> $googleAuth");
+      // print(":> $googleAuth");
 
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
