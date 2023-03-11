@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:todoapp/models/todo_model.dart';
 import 'package:todoapp/services/firestore_path.dart';
 import 'package:todoapp/services/firestore_service.dart';
 
@@ -18,35 +20,35 @@ setAllTodoComplete is require to change all todos item to have the complete stat
 changed to true.
 
  */
-class FirestoreDatabase {
+class FirestoreDatabase extends ChangeNotifier {
   FirestoreDatabase({required this.uid}) : assert(uid != null);
   final String uid;
 
   final _firestoreService = FirestoreService.instance;
 
-  // //Method to create/update todoModel
-  // Future<void> setTodo(TodoModel todo) async => await _firestoreService.set(
-  //       path: FirestorePath.todo(uid, todo.id),
-  //       data: todo.toMap(),
-  //     );
+  //Method to create/update todoModel
+  Future<void> setTodo(TodoModel todo) async => await _firestoreService.set(
+        path: FirestorePath.todo(uid, todo.id),
+        data: todo.toMap(),
+      );
 
-  // //Method to delete todoModel entry
-  // Future<void> deleteTodo(TodoModel todo) async {
-  //   await _firestoreService.deleteData(path: FirestorePath.todo(uid, todo.id));
-  // }
+  //Method to delete todoModel entry
+  Future<void> deleteTodo(TodoModel todo) async {
+    await _firestoreService.deleteData(path: FirestorePath.todo(uid, todo.id));
+  }
 
-  // //Method to retrieve todoModel object based on the given todoId
-  // Stream<TodoModel> todoStream({required String todoId}) =>
-  //     _firestoreService.documentStream(
-  //       path: FirestorePath.todo(uid, todoId),
-  //       builder: (data, documentId) => TodoModel.fromMap(data, documentId),
-  //     );
+  //Method to retrieve todoModel object based on the given todoId
+  Stream<TodoModel> todoStream({required String todoId}) =>
+      _firestoreService.documentStream(
+        path: FirestorePath.todo(uid, todoId),
+        builder: (data, documentId) => TodoModel.fromMap(data, documentId),
+      );
 
-  // //Method to retrieve all todos item from the same user based on uid
-  // Stream<List<TodoModel>> todosStream() => _firestoreService.collectionStream(
-  //       path: FirestorePath.todos(uid),
-  //       builder: (data, documentId) => TodoModel.fromMap(data, documentId),
-  //     );
+  //Method to retrieve all todos item from the same user based on uid
+  Stream<List<TodoModel>> todosStream() => _firestoreService.collectionStream(
+        path: FirestorePath.todos(uid),
+        builder: (data, documentId) => TodoModel.fromMap(data, documentId),
+      );
 
   //Method to mark all todoModel to be complete
   Future<void> setAllTodoComplete() async {

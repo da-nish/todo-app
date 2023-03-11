@@ -23,7 +23,11 @@ class AppTopBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
+              IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: const Icon(Icons.arrow_back)),
               Expanded(
                 child: Text(
                   title,

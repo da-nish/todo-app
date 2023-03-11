@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/providers/auth_provider.dart';
-import 'package:todoapp/services/firestore_database.dart';
-import 'package:todoapp/ui/screens/home_screen.dart';
+import 'package:todoapp/ui/screens/home_screen/home_screen.dart';
 import 'package:todoapp/ui/screens/login_screen.dart';
 
 class Application extends StatelessWidget {
-  final FirestoreDatabase Function(BuildContext context, String uid)
-      databaseBuilder;
-
-  const Application({required Key key, required this.databaseBuilder})
-      : super(key: key);
+  const Application({required Key key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -23,14 +18,12 @@ class Application extends StatelessWidget {
       ),
       home: Consumer<AuthProvider>(
         builder: (_, authProviderRef, __) {
-          // return authProviderRef.isLoggedIn
-          //     ? const MyHomePage(
-          //         title: "",
-          //       )
-          //     : const LoginScreen(
-          //         title: 'Login',
-          //       );
-          return MyHomePage(title: "title");
+          return authProviderRef.isLoggedIn
+              ? HomeScreen(uid: authProviderRef.user!.id)
+              : const LoginScreen(
+                  title: 'Login',
+                );
+          return HomeScreen(uid: authProviderRef.user!.id);
 
           // return const Material(
           //   child: CircularProgressIndicator(),

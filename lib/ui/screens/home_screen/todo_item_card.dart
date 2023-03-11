@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/add_edit_task/edit_task_screen.dart';
+import 'package:todoapp/ui/screens/add_edit_task_screen/add_edit_task_screen.dart';
 
 class TodoItemCard extends StatelessWidget {
   const TodoItemCard({super.key});
@@ -10,7 +10,11 @@ class TodoItemCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const AddEditTask()),
+          MaterialPageRoute(
+              builder: (context) => const AddEditTask(
+                    isEditFlow: true,
+                    data: "",
+                  )),
         );
       },
       child: Column(

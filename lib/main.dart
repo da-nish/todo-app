@@ -19,7 +19,6 @@ Future<void> main() async {
           ),
         ],
         child: Application(
-          databaseBuilder: (_, uid) => FirestoreDatabase(uid: uid),
           key: const Key('MyApp'),
         ),
       ),
