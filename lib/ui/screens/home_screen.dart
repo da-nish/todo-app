@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todoapp/header_card.dart';
-import 'package:todoapp/providers/auth_provider.dart';
-import 'package:todoapp/social_button.dart';
-import 'package:todoapp/todo_item_card.dart';
+import 'package:todoapp/ui/components/app_drawer/app_drawer.dart';
+import 'package:todoapp/ui/screens/header_card.dart';
+import 'package:todoapp/ui/screens/todo_item_card.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -18,27 +16,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       body: SafeArea(
         child: ListView(
           children: <Widget>[
             const SizedBox(width: double.infinity, child: HomeHeaderCard()),
-            SocialButton(
-              onPressed: () async {
-                final authProvider =
-                    Provider.of<AuthProvider>(context, listen: false);
-
-                authProvider.googleLogin();
-              },
-              child: Row(
-                children: [
-                  const SizedBox(width: 24),
-                  Image.asset(
-                    "images/goggle_icon.png",
-                    height: 22,
-                  ),
-                ],
-              ),
-            ),
             Text(
               'Indbox',
               style: Theme.of(context).textTheme.headline5,

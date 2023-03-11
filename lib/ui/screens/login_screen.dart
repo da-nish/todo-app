@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/providers/auth_provider.dart';
-import 'package:todoapp/social_button.dart';
+import 'package:todoapp/ui/components/social_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key, required this.title});

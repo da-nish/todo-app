@@ -26,8 +26,8 @@ status for your UI or widgets to listen.
 class AuthProvider extends ChangeNotifier {
   final googlesignin1 = GoogleSignIn();
   GoogleSignInAccount? _user;
-
-  GoogleSignInAccount get user => _user!;
+  bool get isLoggedIn => _user != null;
+  GoogleSignInAccount? get user => _user;
 
   Future<UserModel?> googleLogin() async {
     try {
@@ -49,9 +49,12 @@ class AuthProvider extends ChangeNotifier {
           accountId: getData(data.user?.uid),
           token: getData(data.credential?.accessToken),
           flow: "default");
+      notifyListeners();
+      print("login success");
+
       return userObject;
     } catch (err) {
-      // print("err::>> $err");
+      print("err::>> $err");
       return null;
     }
   }
@@ -59,7 +62,16 @@ class AuthProvider extends ChangeNotifier {
   String getData(String? value) => value ?? "";
 
   Future googleLogout() async {
-    await googlesignin1.disconnect();
-    FirebaseAuth.instance.signOut();
+    print("doing logout");
+
+    _user = null;
+    try {
+      await googlesignin1.disconnect();
+      FirebaseAuth.instance.signOut();
+      print("doing logout");
+      notifyListeners();
+    } catch (err) {
+      print("error :: $err");
+    }
   }
 }

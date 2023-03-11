@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:todoapp/application.dart';
 import 'package:todoapp/providers/auth_provider.dart';
@@ -5,15 +6,12 @@ import 'package:todoapp/services/firestore_database.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) async {
     runApp(
-      /*
-      * MultiProvider for top services that do not depends on any runtime values
-      * such as user uid/email.
-       */
       MultiProvider(
         providers: [
           ChangeNotifierProvider<AuthProvider>(

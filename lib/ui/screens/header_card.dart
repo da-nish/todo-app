@@ -24,7 +24,9 @@ class HomeHeaderCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Icon(Icons.menu_sharp),
+                    InkWell(
+                        onTap: () => Scaffold.of(context).openDrawer(),
+                        child: const Icon(Icons.menu_sharp)),
                     const SizedBox(height: 16),
                     Text(
                       "title",
