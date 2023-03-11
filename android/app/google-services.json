@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "820874354104",
+    "firebase_url": "https://test1-6005a.firebaseio.com",
+    "project_id": "test1-6005a",
+    "storage_bucket": "test1-6005a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820874354104:android:da57575c339672811b034d",
+        "android_client_info": {
+          "package_name": "com.example.todoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820874354104-1l9sr47suufsim8t2qe8ofo213mo0ih6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAiLD_5VBzBzfhBy2BEa0e_CqF_k0Hd2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820874354104-1l9sr47suufsim8t2qe8ofo213mo0ih6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "820874354104-el2hurnc0bn25nal70h1050ndb7uf4lu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "co.appbrewery.Flash-Chat-iOS13"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
