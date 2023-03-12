@@ -18,7 +18,6 @@ class HomeScreen extends StatelessWidget {
       create: (context) => HomeController(),
       child: const _HomeScreen(),
     );
-    // return const _HomeScreen();
   }
 }
 
@@ -34,7 +33,6 @@ class _HomeScreenState extends State<_HomeScreen> {
   @override
   void initState() {
     super.initState();
-    // homeController = Provider.of<HomeController>(context);
   }
 
   @override
@@ -94,7 +92,7 @@ class _HomeScreenState extends State<_HomeScreen> {
           },
           tooltip: 'Add',
           child: const Icon(Icons.add),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
+        ),
       );
     });
   }

@@ -11,8 +11,6 @@ class HomeHeaderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
-      // width: double.infinity,
-      // color: Colors.red,
       child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -21,7 +19,6 @@ class HomeHeaderCard extends StatelessWidget {
             ),
           ),
           child: SizedBox(
-            // width: MediaQuery.of(context).size.width*1,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -58,16 +55,11 @@ class HomeHeaderCard extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // width: double.infinity,
-                  // height: double.infinity,
                   width: MediaQuery.of(context).size.width * .4,
                   color: Colors.black.withAlpha(60),
                   child: Stack(
                     fit: StackFit.expand,
                     alignment: AlignmentDirectional.center,
-
-                    // mainAxisAlignment: MainAxisAlignment.end,
-                    // crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -126,16 +118,6 @@ class HomeHeaderCard extends StatelessWidget {
                           const SizedBox(height: 8)
                         ],
                       )
-
-                      // Spacer(),
-                      // Expanded(
-                      //   child: Column(
-                      //     mainAxisAlignment: MainAxisAlignment.end,
-                      //     children: [
-                      //       const Text("title"),
-                      //     ],
-                      //   ),
-                      // )
                     ],
                   ),
                 )

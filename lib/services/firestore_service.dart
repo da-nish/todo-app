@@ -1,11 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-/*
-This class represent all possible CRUD operation for FirebaseFirestore.
-It contains all generic implementation needed based on the provided document
-path and documentID,since most of the time in FirebaseFirestore design, we will have
-documentID and path for any document and collections.
- */
 class FirestoreService {
   FirestoreService._();
   static final instance = FirestoreService._();
@@ -19,23 +13,8 @@ class FirestoreService {
     await reference.set(data);
   }
 
-//   Future<void> bulkSet({
-//     required String path,
-//     required List<Map<String, dynamic>> datas,
-//     bool merge = false,
-//   }) async {
-//     final reference = FirebaseFirestore.instance.doc(path);
-//     final batchSet = FirebaseFirestore.instance.batch();
-
-// //    for()
-// //    batchSet.
-
-//     // print('$path: $datas');
-//   }
-
   Future<void> deleteData({required String path}) async {
     final reference = FirebaseFirestore.instance.doc(path);
-    // print('delete: $path');
     await reference.delete();
   }
 
@@ -61,15 +40,5 @@ class FirestoreService {
       }
       return result;
     });
-  }
-
-  Stream<T> documentStream<T>({
-    required String path,
-    required T Function(Map<String, dynamic> data, String documentID) builder,
-  }) {
-    final DocumentReference reference = FirebaseFirestore.instance.doc(path);
-    final Stream<DocumentSnapshot> snapshots = reference.snapshots();
-    return snapshots.map((snapshot) =>
-        builder(snapshot.data() as Map<String, dynamic>, snapshot.id));
   }
 }

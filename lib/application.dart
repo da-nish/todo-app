@@ -5,9 +5,7 @@ import 'package:todoapp/ui/screens/home_screen/home_screen.dart';
 import 'package:todoapp/ui/screens/login_screen/login_screen.dart';
 
 class Application extends StatelessWidget {
-  const Application({required Key key}) : super(key: key);
-
-  // This widget is the root of your application.
+  const Application({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,15 +21,8 @@ class Application extends StatelessWidget {
               : const LoginScreen(
                   title: 'Login',
                 );
-          // return HomeScreen(uid: authProviderRef.user!.id);
-
-          // return const Material(
-          //   child: CircularProgressIndicator(),
-          // );
         },
       ),
-      // home: const LoginScreen(title: 'Flutter Demo Home Page'),
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

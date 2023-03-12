@@ -26,7 +26,6 @@ class TodoItemCard extends StatelessWidget {
                   backgroundColor: AppColors.grey,
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    // backgroundImage: AssetImage('assets/appdev.png'),
                     radius: 29,
                     child: Icon(
                       Icons.edit,
@@ -82,8 +81,6 @@ class TodoItemCard extends StatelessWidget {
 
   void showBottomSheet(BuildContext context) {
     showModalBottomSheet<void>(
-        // context and builder are
-        // required properties in this widget
         context: context,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -92,10 +89,6 @@ class TodoItemCard extends StatelessWidget {
           ),
         ),
         builder: (BuildContext context) {
-          // we set up a container inside which
-          // we create center column and display text
-
-          // Returning SizedBox instead of a Container
           return SizedBox(
             height: 220,
             child: Container(
@@ -155,7 +148,6 @@ class TodoItemCard extends StatelessWidget {
                             style:
                                 AppTextStyle.h4Regular(color: AppColors.white),
                           ),
-                          // svgIcon: AppAssets.googleIcon,
                         ),
                       ),
                     ],

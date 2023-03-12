@@ -17,9 +17,7 @@ Future<void> main() async {
             create: (context) => AuthProvider(),
           ),
         ],
-        child: const Application(
-          key: Key('MyApp'),
-        ),
+        child: const Application(),
       ),
     );
   });

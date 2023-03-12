@@ -32,8 +32,6 @@ class AddEditTaskController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ===================FORM VALIDATION METHODS========================
-
   String? dateValidator(String? value) {
     if ((value ?? "").isEmpty) {
       return 'Please choose date';
@@ -47,7 +45,7 @@ class AddEditTaskController extends ChangeNotifier {
     } else if (titleInputController.text.length <= 2) {
       return 'invalid title';
     }
-    return null; //means no error
+    return null;
   }
 
   String? descriptionValidator(String? value) {
@@ -57,7 +55,7 @@ class AddEditTaskController extends ChangeNotifier {
       return 'invalid description';
     }
 
-    return null; //means no error
+    return null;
   }
 
   Future<void> saveForm(BuildContext context, GlobalKey<FormState> form) async {

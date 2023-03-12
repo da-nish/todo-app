@@ -4,26 +4,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:todoapp/models/user_model.dart';
 import 'package:todoapp/services/firestore_database.dart';
 
-enum Status {
-  uninitialized,
-  authenticated,
-  authenticating,
-  unauthenticated,
-  registering
-}
-/*
-The UI will depends on the Status to decide which screen/action to be done.
-
-- Uninitialized - Checking user is logged or not, the Splash Screen will be shown
-- Authenticated - User is authenticated successfully, Home Page will be shown
-- Authenticating - Sign In button just been pressed, progress bar will be shown
-- Unauthenticated - User is not authenticated, login page will be shown
-- Registering - User just pressed registering, progress bar will be shown
-
-Take note, this is just an idea. You can remove or further add more different
-status for your UI or widgets to listen.
- */
-
 class AuthProvider extends ChangeNotifier {
   final googlesignin1 = GoogleSignIn();
   GoogleSignInAccount? _user;
@@ -37,7 +17,6 @@ class AuthProvider extends ChangeNotifier {
       _user = googleuser;
 
       final googleAuth = await googleuser.authentication;
-      // print(":> $googleAuth");
 
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);

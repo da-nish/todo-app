@@ -23,7 +23,6 @@ class AddEditTask extends StatelessWidget {
         create: (context) =>
             AddEditTaskController(isEditFlow: isEditFlow, data: data),
         builder: (context, child) => _AddEditTask(),
-        // child: _AddEditTask(),
       ),
     );
   }
@@ -122,7 +121,6 @@ class _AddEditTaskState extends State<_AddEditTask> {
                 controller.isEditFlow ? "Update" : "Add",
                 style: AppTextStyle.h4Regular(color: AppColors.white),
               ),
-              // svgIcon: AppAssets.googleIcon,
             ),
             const SizedBox(height: Dimens.grid20),
             const SizedBox(height: Dimens.grid20),
