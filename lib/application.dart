@@ -23,7 +23,7 @@ class Application extends StatelessWidget {
               : const LoginScreen(
                   title: 'Login',
                 );
-          return HomeScreen(uid: authProviderRef.user!.id);
+          // return HomeScreen(uid: authProviderRef.user!.id);
 
           // return const Material(
           //   child: CircularProgressIndicator(),

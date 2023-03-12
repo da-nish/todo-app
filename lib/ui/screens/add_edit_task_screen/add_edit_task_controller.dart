@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:todoapp/core/utils/date_extension.dart';
 import 'package:todoapp/models/todo_model.dart';
 import 'package:todoapp/services/firestore_database.dart';
 
@@ -9,9 +10,16 @@ class AddEditTaskController extends ChangeNotifier {
   TextEditingController titleInputController = TextEditingController();
   TextEditingController descriptionInputController = TextEditingController();
   final bool isEditFlow;
-  final String? data;
+  final TodoModel? data;
 
-  AddEditTaskController({this.isEditFlow = false, required this.data});
+  AddEditTaskController({this.isEditFlow = false, required this.data}) {
+    date = data?.date;
+    titleInputController.text = data?.title ?? "";
+    descriptionInputController.text = data?.description ?? "";
+
+    print("prefilled ${data?.title} ${data?.description}");
+    notifyListeners();
+  }
 
   String get title => titleInputController.text;
   String get description => descriptionInputController.text;
@@ -21,14 +29,12 @@ class AddEditTaskController extends ChangeNotifier {
   set date(DateTime? value) {
     _date = value;
     if (value != null) {
-      dateInputController.text = DateFormat('yyyy-MM-dd').format(value);
+      dateInputController.text = value.dateFormat();
     } else {
       dateInputController.text = "";
     }
     notifyListeners();
   }
-
-  void redirectToHome() {}
 
   // ===================FORM VALIDATION METHODS========================
 
@@ -58,16 +64,25 @@ class AddEditTaskController extends ChangeNotifier {
     return null; //means no error
   }
 
-  void saveForm(BuildContext context, GlobalKey<FormState> _form) {
+  Future<void> saveForm(
+      BuildContext context, GlobalKey<FormState> _form) async {
     // print(controller.userInfo.toString());
     // final isvalid = _form.currentState!.validate();
     // if (isvalid == false) {
     //   return;
     // }
 
-    FirestoreDatabase firestoreDatabase = Provider.of(context);
-    firestoreDatabase.setTodo(TodoModel(
-        id: 'id', task: 'task', extraNote: 'extraNote', complete: false));
+    FirestoreDatabase firestoreDatabase = FirestoreDatabase.instance;
+    TodoModel taskInfo = TodoModel(
+        id: data?.id ?? DateTime.now().microsecondsSinceEpoch.toString(),
+        title: title,
+        description: description,
+        date: date!,
+        complete: false);
+
+    await firestoreDatabase.setTodo(taskInfo).then((value) {
+      print("Added New Task");
+    });
 
     _form.currentState?.save();
   }

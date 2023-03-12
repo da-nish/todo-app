@@ -20,27 +20,37 @@ setAllTodoComplete is require to change all todos item to have the complete stat
 changed to true.
 
  */
-class FirestoreDatabase extends ChangeNotifier {
-  FirestoreDatabase({required this.uid}) : assert(uid != null);
-  final String uid;
+class FirestoreDatabase {
+  static FirestoreDatabase? _instance;
+  static FirestoreDatabase get instance => _instance!;
 
+  static createInstance(String id) {
+    _instance ??= FirestoreDatabase._(uid: id);
+    return _instance;
+  }
+
+  FirestoreDatabase._({required this.uid});
+  final String uid;
   final _firestoreService = FirestoreService.instance;
 
   //Method to create/update todoModel
-  Future<void> setTodo(TodoModel todo) async => await _firestoreService.set(
-        path: FirestorePath.todo(uid, todo.id),
-        data: todo.toMap(),
-      );
+  Future<void> setTodo(TodoModel todo) async {
+    await _firestoreService.set(
+      path: FirestorePath.userTodo(uid, todo.id),
+      data: todo.toMap(),
+    );
+  }
 
   //Method to delete todoModel entry
   Future<void> deleteTodo(TodoModel todo) async {
-    await _firestoreService.deleteData(path: FirestorePath.todo(uid, todo.id));
+    await _firestoreService.deleteData(
+        path: FirestorePath.userTodo(uid, todo.id));
   }
 
   //Method to retrieve todoModel object based on the given todoId
   Stream<TodoModel> todoStream({required String todoId}) =>
       _firestoreService.documentStream(
-        path: FirestorePath.todo(uid, todoId),
+        path: FirestorePath.userTodo(uid, todoId),
         builder: (data, documentId) => TodoModel.fromMap(data, documentId),
       );
 

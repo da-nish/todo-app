@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:todoapp/providers/user_model.dart';
+import 'package:todoapp/services/firestore_database.dart';
 
 enum Status {
   uninitialized,
@@ -51,6 +52,7 @@ class AuthProvider extends ChangeNotifier {
           flow: "default");
       notifyListeners();
       print("login success");
+      FirestoreDatabase.createInstance(user!.id);
 
       return userObject;
     } catch (err) {

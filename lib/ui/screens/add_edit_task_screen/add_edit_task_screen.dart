@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todoapp/models/todo_model.dart';
 import 'package:todoapp/ui/components/app_bar/app_bar.dart';
 import 'package:todoapp/core/theme/theme.dart';
 import 'package:todoapp/ui/screens/add_edit_task_screen/add_edit_task_controller.dart';
 
 class AddEditTask extends StatelessWidget {
-  final String? data;
+  final TodoModel? data;
   final bool isEditFlow;
   const AddEditTask({this.isEditFlow = false, this.data, super.key});
 
@@ -54,32 +55,35 @@ class _AddEditTaskState extends State<_AddEditTask> {
                     decoration: const InputDecoration(
                       labelText: 'Title',
                     ),
-                    controller: controller.titleInputController,
                     textInputAction: TextInputAction.next,
                     onFieldSubmitted: (value) {
                       FocusScope.of(context).requestFocus(focusDescription);
                     },
+                    initialValue: controller.title,
+                    textDirection: TextDirection.ltr,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: controller.titleValidator,
                     onChanged: (value) {
+                      print("title: $value");
                       controller.titleInputController.text = value;
                     }),
                 TextFormField(
                     decoration: const InputDecoration(
                       labelText: 'Description',
                     ),
-                    controller: controller.descriptionInputController,
+                    initialValue: controller.description,
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.text,
                     focusNode: focusDescription,
                     onFieldSubmitted: (value) {
                       FocusScope.of(context).requestFocus(focusDate);
                     },
                     validator: controller.descriptionValidator,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
+                    textDirection: TextDirection.ltr,
                     onChanged: (value) {
+                      print("desc: $value");
                       controller.descriptionInputController.text = value;
-                      controller.descriptionValidator(value);
                     }),
                 TextFormField(
                   decoration: const InputDecoration(labelText: "Enter Date"),
@@ -108,7 +112,10 @@ class _AddEditTaskState extends State<_AddEditTask> {
             Align(
                 alignment: Alignment.centerRight,
                 child: OutlinedButton(
-                    onPressed: () => controller.saveForm(context, _form),
+                    // onPressed: () => controller.saveForm(context, _form),
+                    onPressed: () {
+                      controller.saveForm(context, _form);
+                    },
                     child: const Text("Add"))),
             const SizedBox(height: Dimens.grid20),
             const SizedBox(height: Dimens.grid20),

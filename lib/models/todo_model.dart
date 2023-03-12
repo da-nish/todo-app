@@ -2,29 +2,39 @@ import 'package:meta/meta.dart';
 
 class TodoModel {
   final String id;
-  final String task;
-  final String extraNote;
+  final String title;
+  final String description;
+  final DateTime date;
   final bool complete;
 
   TodoModel(
       {required this.id,
-      required this.task,
-      required this.extraNote,
+      required this.title,
+      required this.description,
+      required this.date,
       required this.complete});
 
   factory TodoModel.fromMap(Map<String, dynamic> data, String documentId) {
-    String task = data['task'];
-    String extraNote = data['extraNote'];
+    String id = data['id'];
+    String title = data['title'];
+    String desc = data['description'];
+    DateTime date = data['date'].toDate();
     bool complete = data['complete'];
 
     return TodoModel(
-        id: documentId, task: task, extraNote: extraNote, complete: complete);
+        id: id,
+        title: title,
+        description: desc,
+        date: date,
+        complete: complete);
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'task': task,
-      'extraNote': extraNote,
+      'id': id,
+      'title': title,
+      'description': description,
+      'date': date,
       'complete': complete,
     };
   }
