@@ -67,7 +67,6 @@ class _AddEditTaskState extends State<_AddEditTask> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: controller.titleValidator,
                     onChanged: (value) {
-                      print("title: $value");
                       controller.titleInputController.text = value;
                     }),
                 TextFormField(
@@ -86,7 +85,6 @@ class _AddEditTaskState extends State<_AddEditTask> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     textDirection: TextDirection.ltr,
                     onChanged: (value) {
-                      print("desc: $value");
                       controller.descriptionInputController.text = value;
                     }),
                 TextFormField(

@@ -51,12 +51,10 @@ class AuthProvider extends ChangeNotifier {
           token: getData(data.credential?.accessToken),
           flow: "default");
       notifyListeners();
-      print("login success");
       FirestoreDatabase.createInstance(user!.id);
 
       return userObject;
     } catch (err) {
-      print("err::>> $err");
       return null;
     }
   }
@@ -64,16 +62,13 @@ class AuthProvider extends ChangeNotifier {
   String getData(String? value) => value ?? "";
 
   Future googleLogout() async {
-    print("doing logout");
-
     _user = null;
     try {
       await googlesignin1.disconnect();
       FirebaseAuth.instance.signOut();
-      print("doing logout");
       notifyListeners();
     } catch (err) {
-      print("error :: $err");
+      debugPrint(err.toString());
     }
   }
 }

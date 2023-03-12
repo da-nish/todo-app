@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:todoapp/models/todo_model.dart';
 import 'package:todoapp/services/firestore_path.dart';
 import 'package:todoapp/services/firestore_service.dart';

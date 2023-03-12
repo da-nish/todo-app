@@ -51,6 +51,7 @@ class AppDrawer extends StatelessWidget {
                     Provider.of<AuthProvider>(context, listen: false);
 
                 await authProvider.googleLogout();
+                // ignore: use_build_context_synchronously
                 Navigator.of(context).pop();
               }),
             ],

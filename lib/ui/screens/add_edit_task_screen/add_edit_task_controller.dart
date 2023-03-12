@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:todoapp/core/utils/date_extension.dart';
 import 'package:todoapp/models/todo_model.dart';
 import 'package:todoapp/services/firestore_database.dart';
@@ -16,8 +14,6 @@ class AddEditTaskController extends ChangeNotifier {
     date = data?.date;
     titleInputController.text = data?.title ?? "";
     descriptionInputController.text = data?.description ?? "";
-
-    print("prefilled ${data?.title} ${data?.description}");
     notifyListeners();
   }
 
@@ -64,9 +60,8 @@ class AddEditTaskController extends ChangeNotifier {
     return null; //means no error
   }
 
-  Future<void> saveForm(
-      BuildContext context, GlobalKey<FormState> _form) async {
-    final isvalid = _form.currentState!.validate();
+  Future<void> saveForm(BuildContext context, GlobalKey<FormState> form) async {
+    final isvalid = form.currentState!.validate();
     if (isvalid == false) {
       return;
     }
@@ -79,7 +74,7 @@ class AddEditTaskController extends ChangeNotifier {
         date: date!,
         complete: false);
 
-    _form.currentState?.save();
+    form.currentState?.save();
 
     await firestoreDatabase.setTodo(taskInfo).then((value) {
       Navigator.of(context).pop();
