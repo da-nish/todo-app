@@ -58,23 +58,6 @@ class _HomeScreenState extends State<_HomeScreen> {
                       return TodoItemCard(
                           item: homeController.todoItems[index]);
                     }),
-                    Row(
-                      children: [
-                        Text(
-                          'Completed',
-                          style: AppTextStyle.h4Medium(color: AppColors.grey),
-                        ),
-                        const SizedBox(width: 8),
-                        CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          radius: 10,
-                          child: Text(
-                            '5',
-                            style: AppTextStyle.h6Medium(color: AppColors.grey),
-                          ),
-                        )
-                      ],
-                    ),
                   ],
                 ),
               )

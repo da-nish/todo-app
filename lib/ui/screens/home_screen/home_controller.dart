@@ -13,5 +13,4 @@ class HomeController extends ChangeNotifier {
   }
 
   List<TodoModel> todoItems = [];
-  void redirectToHome() {}
 }

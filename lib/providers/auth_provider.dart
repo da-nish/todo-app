@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:todoapp/models/user_model.dart';
 import 'package:todoapp/services/firestore_database.dart';
+import 'package:todoapp/services/firestore_service.dart';
 
 class AuthProvider extends ChangeNotifier {
   final googlesignin1 = GoogleSignIn();
@@ -45,6 +46,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       await googlesignin1.disconnect();
       FirebaseAuth.instance.signOut();
+      FirestoreDatabase.reset();
       notifyListeners();
     } catch (err) {
       debugPrint(err.toString());

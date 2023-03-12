@@ -14,6 +14,10 @@ class FirestoreDatabase {
     return _instance;
   }
 
+  static reset() {
+    _instance = null;
+  }
+
   FirestoreDatabase._({required this.uid});
   final String uid;
   final _firestoreService = FirestoreService.instance;
