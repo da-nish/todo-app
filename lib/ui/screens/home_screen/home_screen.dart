@@ -4,9 +4,9 @@ import 'package:todoapp/core/theme/app_colors.dart';
 import 'package:todoapp/core/theme/app_text_style.dart';
 import 'package:todoapp/ui/components/app_drawer/app_drawer.dart';
 import 'package:todoapp/ui/screens/add_edit_task_screen/add_edit_task_screen.dart';
-import 'package:todoapp/ui/screens/header_card.dart';
+import 'package:todoapp/ui/screens/home_screen/widget/header_card.dart';
 import 'package:todoapp/ui/screens/home_screen/home_controller.dart';
-import 'package:todoapp/ui/screens/home_screen/todo_item_card.dart';
+import 'package:todoapp/ui/screens/home_screen/widget/todo_item_card.dart';
 
 class HomeScreen extends StatelessWidget {
   final String uid;
@@ -84,6 +84,7 @@ class _HomeScreenState extends State<_HomeScreen> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.activeBlue,
           onPressed: () {
             Navigator.push(
               context,

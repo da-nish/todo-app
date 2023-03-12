@@ -3,6 +3,8 @@ import 'package:todoapp/core/theme/theme.dart';
 import 'package:todoapp/core/utils/date_extension.dart';
 import 'package:todoapp/models/todo_model.dart';
 import 'package:todoapp/services/firestore_database.dart';
+import 'package:todoapp/ui/components/raised_button/app_button.dart';
+import 'package:todoapp/ui/components/raised_button/app_button_style.dart';
 import 'package:todoapp/ui/screens/add_edit_task_screen/add_edit_task_screen.dart';
 
 class TodoItemCard extends StatelessWidget {
@@ -27,7 +29,7 @@ class TodoItemCard extends StatelessWidget {
                     // backgroundImage: AssetImage('assets/appdev.png'),
                     radius: 29,
                     child: Icon(
-                      Icons.circle,
+                      Icons.edit,
                       color: AppColors.grey,
                     ),
                   ),
@@ -63,7 +65,7 @@ class TodoItemCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     const Icon(
-                      Icons.circle,
+                      Icons.control_point_duplicate_outlined,
                       size: 16,
                       color: AppColors.greyInactive,
                     ),
@@ -126,29 +128,36 @@ class TodoItemCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      OutlinedButton.icon(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          FirestoreDatabase.instance.deleteTodo(item);
-                        },
-                        icon: const Icon(Icons.delete_forever_rounded),
-                        label: const Text("Delete"),
+                      IconButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            FirestoreDatabase.instance.deleteTodo(item);
+                          },
+                          icon: const Icon(
+                            Icons.delete,
+                            color: AppColors.activeRed,
+                          )),
+                      Expanded(
+                        child: AppButton(
+                          AppButtonStyle.fromTheme(Theme.of(context),
+                              activeColor: AppColors.darkBlue),
+                          () {
+                            Navigator.of(context).pop();
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => AddEditTask(
+                                      isEditFlow: true,
+                                      data: item,
+                                    )));
+                          },
+                          Text(
+                            "Edit",
+                            style:
+                                AppTextStyle.h4Regular(color: AppColors.white),
+                          ),
+                          // svgIcon: AppAssets.googleIcon,
+                        ),
                       ),
-                      const SizedBox(width: Dimens.grid8),
-                      OutlinedButton.icon(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AddEditTask(
-                                    isEditFlow: true,
-                                    data: item,
-                                  )));
-                        },
-                        icon: const Icon(Icons.edit),
-                        label: const Text("Edit"),
-                      )
                     ],
                   ),
                 ],

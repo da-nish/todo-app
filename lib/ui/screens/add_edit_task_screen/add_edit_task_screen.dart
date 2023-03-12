@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:todoapp/models/todo_model.dart';
 import 'package:todoapp/ui/components/app_bar/app_bar.dart';
 import 'package:todoapp/core/theme/theme.dart';
+import 'package:todoapp/ui/components/raised_button/app_button.dart';
+import 'package:todoapp/ui/components/raised_button/app_button_style.dart';
 import 'package:todoapp/ui/screens/add_edit_task_screen/add_edit_task_controller.dart';
 
 class AddEditTask extends StatelessWidget {
@@ -16,7 +18,7 @@ class AddEditTask extends StatelessWidget {
       appBar: AppTopBar(
         title: "${isEditFlow ? 'Edit' : 'Add'} Item",
       ),
-      backgroundColor: AppColors.blueShade,
+      backgroundColor: AppColors.darkBlue,
       body: ChangeNotifierProvider(
         create: (context) =>
             AddEditTaskController(isEditFlow: isEditFlow, data: data),
@@ -61,6 +63,7 @@ class _AddEditTaskState extends State<_AddEditTask> {
                     },
                     initialValue: controller.title,
                     textDirection: TextDirection.ltr,
+                    style: AppTextStyle.h4Regular(color: AppColors.grey2),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: controller.titleValidator,
                     onChanged: (value) {
@@ -74,6 +77,7 @@ class _AddEditTaskState extends State<_AddEditTask> {
                     initialValue: controller.description,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
+                    style: AppTextStyle.h4Regular(color: AppColors.grey2),
                     focusNode: focusDescription,
                     onFieldSubmitted: (value) {
                       FocusScope.of(context).requestFocus(focusDate);
@@ -94,6 +98,7 @@ class _AddEditTaskState extends State<_AddEditTask> {
                   readOnly: true,
                   validator: controller.dateValidator,
                   focusNode: focusDate,
+                  style: AppTextStyle.h4Regular(color: AppColors.grey2),
                   onFieldSubmitted: (value) {
                     FocusScope.of(context).requestFocus(focusExit);
                   },
@@ -109,14 +114,18 @@ class _AddEditTaskState extends State<_AddEditTask> {
             ),
             const SizedBox(height: Dimens.grid20),
             const SizedBox(height: Dimens.grid20),
-            Align(
-                alignment: Alignment.centerRight,
-                child: OutlinedButton(
-                    // onPressed: () => controller.saveForm(context, _form),
-                    onPressed: () {
-                      controller.saveForm(context, _form);
-                    },
-                    child: const Text("Add"))),
+            AppButton(
+              AppButtonStyle.fromTheme(Theme.of(context),
+                  activeColor: AppColors.activeBlue),
+              () {
+                controller.saveForm(context, _form);
+              },
+              Text(
+                controller.isEditFlow ? "Update" : "Add",
+                style: AppTextStyle.h4Regular(color: AppColors.white),
+              ),
+              // svgIcon: AppAssets.googleIcon,
+            ),
             const SizedBox(height: Dimens.grid20),
             const SizedBox(height: Dimens.grid20),
             const Text("")

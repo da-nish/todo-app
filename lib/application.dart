@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todoapp/providers/auth_provider.dart';
 import 'package:todoapp/ui/screens/home_screen/home_screen.dart';
-import 'package:todoapp/ui/screens/login_screen.dart';
+import 'package:todoapp/ui/screens/login_screen/login_screen.dart';
 
 class Application extends StatelessWidget {
   const Application({required Key key}) : super(key: key);

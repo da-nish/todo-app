@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:todoapp/providers/user_model.dart';
+import 'package:todoapp/models/user_model.dart';
 import 'package:todoapp/services/firestore_database.dart';
 
 enum Status {

@@ -66,11 +66,10 @@ class AddEditTaskController extends ChangeNotifier {
 
   Future<void> saveForm(
       BuildContext context, GlobalKey<FormState> _form) async {
-    // print(controller.userInfo.toString());
-    // final isvalid = _form.currentState!.validate();
-    // if (isvalid == false) {
-    //   return;
-    // }
+    final isvalid = _form.currentState!.validate();
+    if (isvalid == false) {
+      return;
+    }
 
     FirestoreDatabase firestoreDatabase = FirestoreDatabase.instance;
     TodoModel taskInfo = TodoModel(
@@ -80,10 +79,10 @@ class AddEditTaskController extends ChangeNotifier {
         date: date!,
         complete: false);
 
-    await firestoreDatabase.setTodo(taskInfo).then((value) {
-      print("Added New Task");
-    });
-
     _form.currentState?.save();
+
+    await firestoreDatabase.setTodo(taskInfo).then((value) {
+      Navigator.of(context).pop();
+    });
   }
 }
